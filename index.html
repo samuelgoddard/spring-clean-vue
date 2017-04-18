@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz</title>
+    <script src="https://unpkg.com/vue@2.2.6"></script>
+
+    <style>
+    body {
+        font-family: 'Avenir';
+    }
+    .container {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+    ol, ul {
+        padding: 0;
+        list-style: none;
+    }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" id="spring-clean">
+        <h1>Spring Clean</h1>
+
+        <p>During May we’re offering a online spring clean to help boost online traffic, help grow your online presance and more. Take our super short or slightly longer checklist and we’ll give you a printable action plan for taking part. If you like to hear more we’ll give you a full review for free.</p>
+
+        <ol v-if="!isFinished">
+            <li v-for="task in checklist.tasks">
+                <label :v-for="task.text">{{ task.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="task.text" v-model="task.checked"></label>
+            </li>
+        </ol>
+
+
+        <!-- The List of checked Tasks -->
+        <div v-if="isFinished">
+            <h3>You have</h3>
+
+            <ol>
+                <li v-for="wanteds in wanted" class="list-group-item">
+                    <input type="checkbox" class="checkbox" checked disabled> {{ wanteds.text }}
+                </li>
+            </ol>
+
+            <h3>You don't have</h3>
+
+            <ol>
+                <li v-for="unwanteds in unwanted" class="list-group-item">
+                    <input type="checkbox" class="checkbox" disabled> {{ unwanteds.text }}
+                </li>
+            </ol>
+        </div>
+
+        <button v-if="!isFinished" v-on:click="finished" class="btn btn-danger">Show results</button>
+
+    </div>
+</body>
+
+<script src="app.js"></script>
+
+</html>
