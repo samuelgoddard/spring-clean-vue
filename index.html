@@ -30,28 +30,70 @@
 
         <p>During May we’re offering a online spring clean to help boost online traffic, help grow your online presance and more. Take our super short or slightly longer checklist and we’ll give you a printable action plan for taking part. If you like to hear more we’ll give you a full review for free.</p>
 
-        <ol v-if="!isFinished">
-            <li v-for="task in checklist.tasks">
-                <label :v-for="task.text">{{ task.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="task.text" v-model="task.checked"></label>
-            </li>
-        </ol>
+        <div v-if="!isFinished">
+
+            <h3>Marketing</h3>
+            <ol>
+                <li v-for="marketingTasks in marketingTask">
+                    <label :v-for="marketingTasks.text">{{ marketingTasks.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="marketingTasks.text" v-model="marketingTasks.checked"></label>
+                </li>
+            </ol>
+
+            <h3>Website</h3>
+            <ol>
+                <li v-for="websiteTasks in websiteTask">
+                    <label :v-for="websiteTasks.text">{{ websiteTasks.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="websiteTasks.text" v-model="websiteTasks.checked"></label>
+                </li>
+            </ol>
+
+            <h3>Social</h3>
+            <ol>
+                <li v-for="socialTasks in socialTask">
+                    <label :v-for="socialTasks.text">{{ socialTasks.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="socialTasks.text" v-model="socialTasks.checked"></label>
+                </li>
+            </ol>
+
+            <h3>Analytics</h3>
+            <ol>
+                <li v-for="analyticsTasks in analyticsTask">
+                    <label :v-for="analyticsTasks.text">{{ analyticsTasks.text }} <input style="float: right;" type="checkbox" class="checkbox" :v-id="analyticsTasks.text" v-model="analyticsTasks.checked"></label>
+                </li>
+            </ol>
+        </div>
+
+
 
 
         <!-- The List of checked Tasks -->
         <div v-if="isFinished">
-            <h3>You have</h3>
+            <!-- <div v-if="doing.length >= 1 && doing.length <= 3">
+                <h3>Meh</h3>
+                <p>More than 0!</p>
+            </div>
+
+            <div v-if="doing.length >= 4 && doing.length <= 6">
+                <h3>Not Bad</h3>
+                <p>More than 3!</p>
+            </div>
+
+            <div v-if="doing.length >= 7 && doing.length <= 11">
+                <h3>Excellent</h3>
+                <p>More than 6!</p>
+            </div> -->
+
+            <h3>Things you're doing well</h3>
 
             <ol>
-                <li v-for="wanteds in wanted" class="list-group-item">
-                    <input type="checkbox" class="checkbox" checked disabled> {{ wanteds.text }}
+                <li v-for="doings in doing" class="list-group-item">
+                    <input type="checkbox" class="checkbox" checked disabled> {{ doings.text }}
                 </li>
             </ol>
 
-            <h3>You don't have</h3>
+            <h3>Things that require attention</h3>
 
             <ol>
-                <li v-for="unwanteds in unwanted" class="list-group-item">
-                    <input type="checkbox" class="checkbox" disabled> {{ unwanteds.text }}
+                <li v-for="notDoings in notDoing" class="list-group-item">
+                    <input type="checkbox" class="checkbox" disabled> {{ notDoings.text }}
                 </li>
             </ol>
         </div>
